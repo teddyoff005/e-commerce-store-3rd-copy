@@ -23,11 +23,11 @@ class User:
 class Store:
     def __init__(self):
         self.products = [
-            Product(1, "Python Mug", 12.99, 10),
-            Product(2, "Mechanical Keyboard", 150.00, 5),
-            Product(3, "Gaming Mouse", 65.50, 8),
-            Product(4, "USB-C Hub", 35.00, 15),
-            Product(5, "Laptop Stand", 45.99, 7)
+            Product(1, "Water Bottle", 15.00, 20),
+            Product(2, "Healthy Snacks", 5.99, 30),
+            Product(3, "Toothbrush Set", 8.50, 15),
+            Product(4, "Notebook and Pen", 10.00, 25),
+            Product(5, "First Aid Kit", 25.00, 10)
         ]
         self.users = []
         self.current_user = None
@@ -56,9 +56,9 @@ class Store:
                     print(f"\nRestocked {p.name}!")
                     time.sleep(1)
 
-    def login(self):
+    def sign_in(self):
         clear_screen()
-        print("--- LOGIN ---")
+        print("--- SIGN IN ---")
         username = input("Username: ")
         password = input("Password: ")
 
@@ -75,9 +75,9 @@ class Store:
             print("\nInvalid credentials.")
         time.sleep(1.5)
 
-    def register(self):
+    def sign_up(self):
         clear_screen()
-        print("--- REGISTER ---")
+        print("--- SIGN UP ---")
         username = input("Choose a username: ")
         if any(u.username == username for u in self.users):
             print("\nUsername already exists.")
@@ -87,7 +87,7 @@ class Store:
         password = input("Choose a password: ")
         print(f"Password entered: {password}")
         self.users.append(User(username, password))
-        print("\nAccount created successfully! Please login.")
+        print("\nAccount created successfully! Please sign in.")
         time.sleep(1.5)
 
     def logout(self):
@@ -183,7 +183,7 @@ class Store:
 
     def checkout(self, total_amount):
         if not self.current_user:
-            print("\nPlease login to checkout.")
+            print("\nPlease sign in to checkout.")
             time.sleep(1.5)
             return
 
@@ -263,8 +263,8 @@ class Store:
                 print("3. My Profile & Orders")
                 print("4. Logout")
             else:
-                print("3. Login")
-                print("4. Register")
+                print("3. Sign In")
+                print("4. Sign Up")
             print("Q. Quit")
             
             choice = input("\nSelect an option: ").upper()
@@ -275,10 +275,10 @@ class Store:
                 self.view_cart()
             elif choice == '3':
                 if self.current_user: self.view_profile()
-                else: self.login()
+                else: self.sign_in()
             elif choice == '4':
                 if self.current_user: self.logout() 
-                else: self.register()
+                else: self.sign_up()
             elif choice == 'Q':
                 print("\nThank you for visiting! Goodbye.")
                 break
